@@ -4,6 +4,7 @@ from .models import Group, Post
 
 SLICE = 10
 
+
 def index(request):
     posts = Post.objects.all()[:SLICE]
     title = 'Последние обновления на сайте'
