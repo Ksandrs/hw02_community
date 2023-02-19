@@ -2,22 +2,18 @@ from django.shortcuts import get_object_or_404, render
 
 from .models import Group, Post
 
-SLICE = 10
+POSTS_PER_PAGE = 10
 
 
 def index(request):
-    posts = Post.objects.all()[:SLICE]
-    title = 'Последние обновления на сайте'
-    context = {
-        'posts': posts,
-        'title': title,
-    }
+    posts = Post.objects.all()[:POSTS_PER_PAGE]
+    context = {'posts': posts,}
     return render(request, 'posts/index.html', context)
 
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    posts = group.posts.all()[:SLICE]
+    posts = group.posts.all()[:POSTS_PER_PAGE]
     title = (f'Записи сообщества {group.title}')
     context = {
         'group': group,
