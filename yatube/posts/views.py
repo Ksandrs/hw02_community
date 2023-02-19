@@ -7,7 +7,7 @@ POSTS_PER_PAGE = 10
 
 def index(request):
     posts = Post.objects.all()[:POSTS_PER_PAGE]
-    context = {'posts': posts,}
+    context = {'posts': posts}
     return render(request, 'posts/index.html', context)
 
 
